@@ -1,0 +1,28 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'sample/style.css' %}"> 
+    <script type="text/javascript" src="{% static 'sample/index.js' %}"></script> 
+</head>
+<body>
+    <h1>hello!</h1>
+    <form method="post">
+        {% csrf_token %}
+        <input type=text name="input_num">
+        <button type="submit" name="cal">cal</button>
+    </form>
+
+    {% if result %}
+    <h2>{{ input_num }}의 소수 : {{ result }} 개</h2>
+    <!-- 결과값삭제 -->
+    <a href="/index"><input type="button" id="clear" value="clear"></a>
+    {% endif %}
+
+</body>
+</html>
