@@ -11,20 +11,26 @@ def index(request):
 
     if 'cal' in request.POST:
         input_num = request.POST['input_num']
-        num = int(input_num)
-        print(num)
-        
-        #소수 개수 구하기
-        for i in range(2, int(math.sqrt(num)+1)):
-            if is_prime(i):
-                lst.append(i)
-        for l in range(2, num+1):
-            if is_prime(l):
-                count += 1
-        print(count)
-
-        return render(request, 'sample/index.html', {'input_num': num, 'result':count})
+        #input_num 값이 없을 때
+        if input_num == '':
+            return redirect('index')
+        else:
+            num = int(input_num)
+            print(num)
+            
     
+            #소수 개수 구하기
+            for i in range(2, int(math.sqrt(num)+1)):
+                if is_prime(i):
+                    lst.append(i)
+            for l in range(2, num+1):
+                if is_prime(l):
+                    count += 1
+            print(count)
+
+            return render(request, 'sample/index.html', {'input_num': num, 'result':count})
+
+
     # GET
     else:
         return render(request, 'sample/index.html')
